@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ad Page</title>
-    
-   <script src='//doakosteceet.net/vignette.min.js' data-zone='8469379' data-sdk='show_8469379'></script>
-              
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script src='//doakosteceet.net/vignette.min.js' data-zone='8469379' data-sdk='show_8469379'></script>
+  <script>
+    // Lấy link từ query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const link = urlParams.get('link');
 
+    // Thực thi mã script quảng cáo
+    // Sau khi thực thi, chuyển hướng đến link gốc
+    setTimeout(() => {
+      window.location.href = link;
+    }, 3000); // Chờ 3 giây để mã script quảng cáo thực thi
+  </script>
+</head>
+<body>
+  <p>Redirecting you to the link...</p>
+</body>
 </html>
+
+
