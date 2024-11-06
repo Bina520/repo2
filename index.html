@@ -10,29 +10,19 @@
     const link = urlParams.get('link');
     const adLink = 'https://www.profitablecpmrate.com/ncc53nijfk?key=02d6efceaf8b7a7f564b99413c4b3056'; // Thay thế bằng link quảng cáo của bạn
 
-    // Thời gian chờ (tính bằng giây)
-    let countdown = 9;
-
-    // Mở link quảng cáo trong tab mới
+    // Mở link quảng cáo trong cùng một tab và tự động tắt sau 6 giây
     window.onload = function() {
-      window.open(adLink, '_blank');
+      // Chuyển hướng đến trang quảng cáo
+      window.location.href = adLink;
 
-      // Cập nhật nội dung đếm ngược mỗi giây
-      const countdownElement = document.getElementById('countdown');
-      const interval = setInterval(() => {
-        countdownElement.textContent = countdown;
-        countdown--;
-
-        // Khi đếm ngược về 0, dừng đếm ngược và chuyển hướng
-        if (countdown < 0) {
-          clearInterval(interval);
-          window.location.href = link;
-        }
-      }, 1000); // Cập nhật mỗi giây
+      // Tự động tắt sau 6 giây
+      setTimeout(() => {
+        window.close();
+      }, 6000);
     };
   </script>
 </head>
 <body>
-  <p>Redirecting you to the link in <span id="countdown">5</span> seconds...</p>
+  <p>Redirecting you to the advertisement...</p>
 </body>
 </html>
