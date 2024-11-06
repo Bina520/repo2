@@ -4,27 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ad Page</title>
+    
+   <script src='//doakosteceet.net/vignette.min.js' data-zone='8469379' data-sdk='show_8469379'></script>
+              
 </head>
-<body>
-    <button id="showAdButton">Show ad</button>
 
-    <script>
-        document.getElementById('showAdButton').addEventListener('click', function() {
-            const tag = document.createElement('script');
-            tag.src = '//doakosteceet.net/vignette.min.js';
-            tag.dataset.zone = '8467232';
-            tag.dataset.sdk = 'show_8467232';
-
-            document.body.appendChild(tag);
-
-            tag.onload = function() {
-                show_8467232().then(() => {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const redirectUrl = urlParams.get('url');
-                    window.location.href = redirectUrl;
-                });
-            };
-        });
-    </script>
-</body>
 </html>
