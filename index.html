@@ -4,22 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting...</title>
-  <script src='//doakosteceet.net/vignette.min.js' data-zone='8469379' data-sdk='show_8469379'></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
   <script>
-    // Lấy link từ query parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const link = urlParams.get('link');
+    document.addEventListener('DOMContentLoaded', () => {
+      const link = 'https://chikraighotoops.com/4/7414451'; // Thay thế bằng liên kết cụ thể của bạn
+      let countdown = 5; // Thời gian đếm ngược (giây)
+      const countdownElement = document.getElementById('countdown');
+      countdownElement.textContent = countdown;
 
-    // Thực thi mã script quảng cáo
-    // Sau khi thực thi, chuyển hướng đến link gốc
-    setTimeout(() => {
-      window.location.href = link;
-    },15000); // Chờ 3 giây để mã script quảng cáo thực thi
+      const interval = setInterval(() => {
+        countdown -= 1;
+        countdownElement.textContent = countdown;
+
+        if (countdown <= 0) {
+          clearInterval(interval);
+          window.location.href = link;
+        }
+      }, 1000);
+    });
   </script>
 </head>
 <body>
-  <p>Redirecting you to the link...</p>
+  <p>Redirecting you to the link in <span id="countdown"></span> seconds...</p>
 </body>
 </html>
-
-
