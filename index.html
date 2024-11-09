@@ -3,77 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini App</title>
-    <script src="https://unpkg.com/react/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <title>Telegram Web App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="text/babel">
-        const ShowAdButton = () => {
-            React.useEffect(() => {
-                if (window.show_8469379) {
-                    return;
-                }
+    <h1>Welcome to My Telegram Web App</h1>
+    <p id="linkDisplay">This is a simple web app for Telegram.</p>
 
-                const tag = document.createElement('script');
-                tag.src = '//doakosteceet.net/act/files/tag.min.js';
-                tag.dataset.zone = '8469379';
-                tag.dataset.sdk = 'show_8469379';
+    <script>
+        // Lấy liên kết từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const link = urlParams.get('link');
 
-                document.body.appendChild(tag);
-            }, []);
-
-            const showAd = () => {
-                show_8469379().then(() => {
-                    // add here the function that should be executed after viewing the ad
-                    document.getElementById('content').style.display = 'block';
-                });
-            };
-
-            return <button onClick={showAd}>Show ad</button>;
-        };
-
-        class App extends React.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    link: new URLSearchParams(window.location.search).get('link'),
-                    content: null,
-                    showAd: true
-                };
-            }
-
-            componentDidMount() {
-                if (this.state.link) {
-                    fetch(this.state.link)
-                        .then(response => response.text())
-                        .then(data => this.setState({ content: data }));
-                }
-            }
-
-            handleAdClose = () => {
-                this.setState({ showAd: false });
-            }
-
-            render() {
-                return (
-                    <div>
-                        {this.state.showAd ? (
-                            <div>
-                                <h2>Watch this ad to continue</h2>
-                                <ShowAdButton />
-                            </div>
-                        ) : (
-                            <div id="content" style={{ display: 'none' }} dangerouslySetInnerHTML={{ __html: this.state.content }} />
-                        )}
-                    </div>
-                );
-            }
+        if (link) {
+            document.getElementById('linkDisplay').innerText = `Opening link: ${link}`;
+            // Mở liên kết trong Telegram
+            Telegram.WebApp.openLink(link);
+        } else {
+            document.getElementById('linkDisplay').innerText = 'No link provided.';
         }
-
-        ReactDOM.render(<App />, document.getElementById('root'));
     </script>
 </body>
 </html>
