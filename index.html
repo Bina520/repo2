@@ -42,7 +42,7 @@
     <script>
         // Function to get query parameters from URL using URLSearchParams
         function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
+            const params = new URLSearchParams(window.Telegram.WebApp.initData);
             return Object.fromEntries(params.entries());
         }
 
