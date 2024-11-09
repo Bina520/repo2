@@ -4,23 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Web App</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .link {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Telegram Web App</h1>
-    <p id="linkDisplay">This is a simple web app for Telegram.</p>
+    <div class="container">
+        <h1>Open Telegram Link</h1>
+        <p id="link-text">Loading...</p>
+        <a id="link" class="link" href="#" target="_blank">Open Link</a>
+    </div>
 
     <script>
-        // Lấy liên kết từ URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const link = urlParams.get('link');
+        // Function to get query parameters from URL
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const regex = /([^&=]+)=([^&]*)/g;
+            let m;
+            while (m = regex.exec(queryString)) {
+                params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+            return params;
+        }
 
+        // Get the link from query parameters
+        const params = getQueryParams();
+        const link = params.start;
+
+        // Update the link and text on the page
         if (link) {
-            document.getElementById('linkDisplay').innerText = `Opening link: ${link}`;
-            // Mở liên kết trong Telegram
-            Telegram.WebApp.openLink(link);
+            document.getElementById('link-text').textContent = `Link: ${link}`;
+            document.getElementById('link').href = link;
         } else {
-            document.getElementById('linkDisplay').innerText = 'No link provided.';
+            document.getElementById('link-text').textContent = 'No link provided';
+            document.getElementById('link').style.display = 'none';
         }
     </script>
 </body>
